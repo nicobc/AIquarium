@@ -1,0 +1,15 @@
+@font-face{
+  font-family: "big john";
+  src: url('../fonts/BIG_JOHN.otf');
+}
+
+@font-face{
+  font-family: "slim joe";
+  src: url('../fonts/Slim_Joe.otf');
+}
+
+html, body {
+  background-color: dodgerblue;
+  height: 100%;
+  width: 100%;
+}

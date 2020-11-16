@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container d-flex h-75">
+  <div class="row mx-auto align-self-center">
+    <div class='col-12 text-center'>
+      <h1 class='text-white' style='font-family: "big john";'>A.I.-quarium</h1>
+    </div>
+    <div class='col-12 text-center'>
+      <h3 class='text-white' style='font-family: "slim joe"; font-weight: bold;'>A.I.-powered fish recognition</h3>
+    </div>
+    <div class='col-12 mt-5 text-center'>
+      <img src="{{ url_for('static', filename='img/logo-w.svg') }}" height=150/>
+    </div>
+  </div>
+</div>
+{% endblock %}
