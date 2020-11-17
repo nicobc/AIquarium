@@ -2,10 +2,16 @@
 
 {% block body %}
 
-<div class="container d-flex h-75">
-  <div class="row mx-auto align-self-center">
-    <div class='col-12 text-center'>
-      <h1 class='text-white' style='font-family: "big john";'>A.I.-quarium</h1>
+<div class="container mt-5 h-75">
+
+  <!-- home -->
+  {% if not filename %}
+    <div class="row py-5 h-75" id='home'>
+  {% else %}
+    <div class="row py-5 h-75" id='home' style='display: none;'>
+  {% endif %}
+    <div class='col-12 mt-5 text-center'>
+      <h1 class='text-white mt-5' style='font-family: "big john";'>A.I.-quarium</h1>
     </div>
     <div class='col-12 text-center'>
       <h3 class='text-white' style='font-family: "slim joe"; font-weight: bold;'>A.I.-powered fish recognition</h3>
@@ -14,5 +20,51 @@
       <img src="{{ url_for('static', filename='img/logo-w.svg') }}" height=150/>
     </div>
   </div>
+
+  <!-- input -->
+  {% if not filename %}
+    <div class="row mx-auto py-5 w-50 h-75" id='input' style='display: none;'>
+  {% else %}
+    <div class="row mx-auto py-5 w-50 h-75" id='input'>
+  {% endif %}
+    <div class='col-12 mt-5 pt-5 text-center'>
+      <form method=post enctype=multipart/form-data>
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" onchange='this.form.submit()' name='file' id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            {% if filename %}
+              <label class="custom-file-label" for="inputGroupFile01">{{ filename }}</label>
+            {% else %}
+              <label class="custom-file-label" for="inputGroupFile01">...</label>
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    </div>
+    {% if filename %}
+    <div class='col-12 text-center'>
+	    <img src="{{ url_for('display_image', filename=filename) }}" height=300>
+    </div>
+    {% endif %}
+  </div>
+
+
+  <!-- buttons -->
+  <div class="row mx-auto align-self-center py-5">
+    <div class='col-12 mt-auto text-center'>
+      <a href='#' id='start' class='btn-custom'><i class='fa fa-play-circle'></i></a>
+    </div>
+  </div>
+
 </div>
+
+<script>
+$(document).ready(function(){
+  $('#start').click(function() {
+    $('#home').fadeOut('fast', function() {
+      $('#input').fadeIn();
+    });
+  });
+});
+</script>
 {% endblock %}
