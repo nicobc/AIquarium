@@ -1,13 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://en.wikipedia.org/wiki/List_of_fish_of_the_Mediterranean_Sea#Cyclostomata'
-
-response = requests.get(url)
-
-with open('fishnames.csv', 'w') as file:
-    file.write('Fish Name\n')
-
+def fishnames():
+    URL = 'https://en.wikipedia.org/wiki/List_of_fish_of_the_Mediterranean_Sea'
+    response = requests.get(URL)
     if response.ok:
         titles = []
         soup = BeautifulSoup(response.text, 'lxml')
@@ -16,5 +12,5 @@ with open('fishnames.csv', 'w') as file:
             a = row.find('a')
             if a is not None :
                 title = a['title']
-                titles.append(title)
-                file.write(title.replace('(page does not exist)', '') + '\n')
+                titles.append(title.replace(' (page does not exist)', ''))
+    return titles
