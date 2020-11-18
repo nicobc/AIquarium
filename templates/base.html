@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-     <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
+     <meta content='minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
     <title>AIquarium</title>
 
     <!-- CSS -->
@@ -32,18 +32,23 @@
     {% endblock %}
   </head>
   <body>
-    <div class='line-1'>
-      <div class='wave wave1' style='background-image: url(static/img/1.png)'></div>
+    <div class='wrapper h-100'>
+        <div class='line-1'>
+          <div class='wave wave1' style='background-image: url(static/img/1.png)'></div>
+        </div>
+
+        <div class='line-2'>
+          <div class='wave wave2' style='background-image: url(static/img/2.png)'></div>
+        </div>
+
+        <div class='line-3'>
+          <div class='wave wave3' style='background-image: url(static/img/3.png)'></div>
+        </div>
+      {% block body %}
+      {% endblock %}
     </div>
 
-    <div class='line-2'>
-      <div class='wave wave2' style='background-image: url(static/img/2.png)'></div>
-    </div>
-
-    <div class='line-3'>
-      <div class='wave wave3' style='background-image: url(static/img/3.png)'></div>
-    </div>
-    {% block body %}
+    {% block script %}
     {% endblock %}
   </body>
 </html>
