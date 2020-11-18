@@ -19,17 +19,9 @@ html, body {
   position: relative;
 }
 
-/*#next {
-  padding: 0/*5px 8px 4px 8px;
-}*/
-#prev {
-  padding: 5px 8px 4px 8px;
-}
-
 .btn-custom {
   text-decoration: none;
   color: white;
-  font-size: 2em;
 }
 .btn-custom:hover {
   text-decoration: none;
