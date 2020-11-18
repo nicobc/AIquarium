@@ -2,17 +2,17 @@
 
 {% block body %}
 
-<div class="container mt-0 mt-md-5 h-75">
-  <div class='row pt-2'>
+<div class="container mt-0 mt-md-2 h-75">
+  <div class='row py-3'>
     <div class='col-12 text-right'>
       <a href='#' id='about' class='btn-custom'>
         <i class="far fa-question-circle fa-lg" id='about-icon'></i>
       </a>
     </div>
   </div>
-  <div class="row py-3 py-md-5 h-25">
+  <div class="row align-items-center" style='height: 40%;'>
     <div class='col-12 text-center'>
-      <h1 class='text-white mt-5' style='font-family: "big john";'>A.I.-quarium</h1>
+      <h1 class='text-white' style='font-family: "big john";'>A.I.-quarium</h1>
     </div>
     <div class='col-12 text-center'>
       <h3 class='text-white' style='font-family: "slim joe"; font-weight: bold;'>A.I.-powered fish recognition</h3>
@@ -21,18 +21,19 @@
 
   <!-- home -->
   {% if not filename %}
-    <div class="row py-5 h-50" id='home'>
+    <!--div class="row py-5 h-50" id='home'-->
+    <div class="row justify-content-center align-items-center" style='height: 40%;' id='home'>
   {% else %}
-    <div class="row py-5 h-50" id='home' style='display: none;'>
+    <div class="row justify-content-center align-items-center" style='height: 40%; display: none;' id='home'>
   {% endif %}
-    <div class='col-12 mt-5 text-center'>
-      <img class='mt-3 mt-md-2' src="{{ url_for('static', filename='img/logo-w.svg') }}" height=140/>
+    <div class='col-12 text-center'>
+      <img class='img-fluid' src="{{ url_for('static', filename='img/logo-w.svg') }}" style='max-height: 20vh;'/>
     </div>
   </div>
 
   <!-- input -->
-  <div class="row mx-auto py-5 w-75 h-50" id='input' style='display: none;'>
-    <div class='col-12 mt-5 pt-5 text-center'>
+  <div class="row justify-content-center align-items-center" style='height: 40%; display: none;' id='input'>
+    <div class='col-10 text-center'>
       <form method=post enctype=multipart/form-data>
         <div class="input-group mb-3">
           <div class="custom-file">
@@ -48,8 +49,8 @@
 
   <!-- picture -->
   {% if filename %}
-  <div class="row justify-content-center py-5 h-50" id='picture'>
-    <div class='col-6 mt-2 mt-md-5 pt-2 pt-md-5 text-center'>
+  <div class="row justify-content-center align-items-center" style='height: 40%;' id='picture'>
+    <div class='col-12 text-center'>
        <img src="{{ url_for('display_image', filename=filename) }}"
             class='img-fluid border border-white'
             style='border-width: 2px !important; border-radius: 10%; max-height: 18vh !important;'>
@@ -58,7 +59,7 @@
   {% endif %}
 
   <!-- buttons -->
-  <div class="row justify-content-center align-self-center py-5">
+  <div class="row justify-content-center align-items-center" style='height: 20%;'>
     {% if not filename %}
     <div class='col-4 col-md-1 text-center' id='prev-div' style='display: none;'>
     {% else %}
