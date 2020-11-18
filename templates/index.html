@@ -18,47 +18,47 @@
     <div class="row py-5 h-50" id='home' style='display: none;'>
   {% endif %}
     <div class='col-12 mt-5 text-center'>
-      <img src="{{ url_for('static', filename='img/logo-w.svg') }}" height=150/>
+      <img class='mt-2' src="{{ url_for('static', filename='img/logo-w.svg') }}" height=150/>
     </div>
   </div>
 
   <!-- input -->
-  {% if not filename %}
-    <div class="row mx-auto py-5 w-50 h-50" id='input' style='display: none;'>
-  {% else %}
-    <div class="row mx-auto py-5 w-50 h-50" id='input'>
-  {% endif %}
+  <div class="row mx-auto py-5 w-100 w-md-50 h-50" id='input' style='display: none;'>
     <div class='col-12 mt-5 pt-5 text-center'>
       <form method=post enctype=multipart/form-data>
         <div class="input-group mb-3">
           <div class="custom-file">
             <input type="file" class="custom-file-input" onchange='this.form.submit()' name='file' id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-            {% if filename %}
-              <label class="custom-file-label" for="inputGroupFile01">{{ filename }}</label>
-            {% else %}
               <label class="custom-file-label" for="inputGroupFile01">...</label>
-            {% endif %}
           </div>
         </div>
       </form>
     </div>
-    {% if filename %}
-    <div class='col-12 text-center'>
-	    <img src="{{ url_for('display_image', filename=filename) }}" class='rounded' height=200>
-    </div>
-    {% endif %}
   </div>
 
+  <!-- picture -->
+  {% if filename %}
+  <div class="row justify-content-center py-5 h-50" id='picture'>
+    <div class='col-6 mt-5 pt-5 text-center'>
+       <img src="{{ url_for('display_image', filename=filename) }}"
+            class='img-fluid border border-white'
+            style='border-width: 2px !important; border-radius: 10%; max-height: 200px !important;'>
+     </div>
+   </div>
+  {% endif %}
 
   <!-- buttons -->
-
   <div class="row justify-content-center align-self-center py-5">
+    {% if not filename %}
     <div class='col-4 col-md-1 text-center' id='prev-div' style='display: none;'>
+    {% else %}
+    <div class='col-4 col-md-1 text-center' id='prev-div'>
+    {% endif %}
       <a href='#' id='prev' class='btn-custom'>
         <i class="far fa-play-circle fa-flip-horizontal fa-lg" id='prev-icon'></i>
       </a>
     </div>
-    <div class='col-4 col-md-1 text-center'>
+    <div class='col-4 col-md-1 text-center' id='next-div'>
       <a href='#' id='next' class='btn-custom'>
         <i class="far fa-play-circle fa-lg" id='next-icon'></i>
       </a>
@@ -90,6 +90,7 @@ $(document).ready(function(){
   );
   $('#next').click(function() {
     if ($('#home').is(':visible')) {
+      $('#next-div').fadeOut('fast');
       $('#home').fadeOut('fast', function() {
         $('#input').fadeIn();
         $('#prev-div').fadeIn();
@@ -101,8 +102,14 @@ $(document).ready(function(){
       $('#prev-div').fadeOut('fast');
       $('#input').fadeOut('fast', function() {
         $('#home').fadeIn();
+        $('#next-div').fadeIn();
       });
-    }
+    } else if ($('#picture').is(':visible')) {
+      $('#next-div').fadeOut('fast');
+      $('#picture').fadeOut('fast', function() {
+        $('#input').fadeIn();
+      });
+    };
   });
 });
 </script>
