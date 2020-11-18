@@ -34,7 +34,8 @@ def index():
             return redirect(request.url)
     else:
         for path in glob(os.path.join(app.config['UPLOAD_FOLDER'], '*')):
-            os.remove(path)
+            if not path.endswith('gitignore'):
+                os.remove(path)
         return render_template('index.html')
 
 

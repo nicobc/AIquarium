@@ -12,26 +12,28 @@ html, body {
   background-color: dodgerblue;
   height: 100%;
   width: 100%;
-  overflow-x: hidden;
+}
+
+.wrapper {
+  overflow: hidden !important;
+  position: relative;
+}
+
+/*#next {
+  padding: 0/*5px 8px 4px 8px;
+}*/
+#prev {
+  padding: 5px 8px 4px 8px;
 }
 
 .btn-custom {
   text-decoration: none;
-  padding: 5px 8px 4px 8px;
   color: white;
   font-size: 2em;
-  border: 2px solid white;
-  border-radius: 50%;
 }
 .btn-custom:hover {
   text-decoration: none;
-  background-color: white;
-  color: dodgerblue;
 }
 .btn-custom:active {
   text-decoration: none;
-  background-color: lightgray;
-  color: dodgerblue;
-  border: 2px solid lightgray;
-  border-radius: 50%;
 }
