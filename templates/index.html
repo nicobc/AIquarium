@@ -2,66 +2,88 @@
 
 {% block body %}
 
-<div class="container mt-1 mt-md-5 h-75">
-  <div class="row py-5 h-25">
-    <div class='col-12 mt-1 mt-md-5 text-center'>
-      <h1 class='text-white mt-5' style='font-family: "big john";'>A.I.-quarium</h1>
+<div class="container mt-0 mt-md-2" style='height: 67%;'>
+  <div class='row py-3'>
+    <div class='col-12 text-right'>
+      <a href='#' class='btn-custom' id='about'>
+        <i class="far fa-question-circle fa-lg" id='about-icon'></i>
+      </a>
     </div>
+  </div>
+  <div class="row align-items-end" style='height: 40%;'>
     <div class='col-12 text-center'>
+      <h1 class='text-white' style='font-family: "big john";'>A.I.-quarium</h1>
       <h3 class='text-white' style='font-family: "slim joe"; font-weight: bold;'>A.I.-powered fish recognition</h3>
     </div>
   </div>
+
   <!-- home -->
   {% if not filename %}
-    <div class="row py-5 h-50" id='home'>
+    <div class="row justify-content-center align-items-center" style='height: 40%;' id='home'>
   {% else %}
-    <div class="row py-5 h-50" id='home' style='display: none;'>
+    <div class="row justify-content-center align-items-center" style='height: 40%; display: none;' id='home'>
   {% endif %}
-    <div class='col-12 mt-5 text-center'>
-      <img src="{{ url_for('static', filename='img/logo-w.svg') }}" height=150/>
+    <div class='col-12 text-center'>
+      <img class='img-fluid' src="{{ url_for('static', filename='img/logo-w.svg') }}" style='max-height: 20vh;'/>
     </div>
   </div>
 
   <!-- input -->
-  {% if not filename %}
-    <div class="row mx-auto py-5 w-50 h-50" id='input' style='display: none;'>
-  {% else %}
-    <div class="row mx-auto py-5 w-50 h-50" id='input'>
-  {% endif %}
-    <div class='col-12 mt-5 pt-5 text-center'>
+  <div class="row justify-content-center align-items-center" style='height: 40%; display: none;' id='input'>
+    <div class='col-10 text-center'>
       <form method=post enctype=multipart/form-data>
         <div class="input-group mb-3">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" onchange='this.form.submit()' name='file' id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-            {% if filename %}
-              <label class="custom-file-label" for="inputGroupFile01">{{ filename }}</label>
-            {% else %}
+            <input type="file" accept="image/*" class="custom-file-input"
+                   onchange='this.form.submit()' name='file' id="inputGroupFile01"
+                   aria-describedby="inputGroupFileAddon01">
               <label class="custom-file-label" for="inputGroupFile01">...</label>
-            {% endif %}
           </div>
         </div>
       </form>
     </div>
-    {% if filename %}
-    <div class='col-12 text-center'>
-	    <img src="{{ url_for('display_image', filename=filename) }}" class='rounded' height=200>
-    </div>
-    {% endif %}
   </div>
 
+  <!-- picture -->
+  {% if filename %}
+  <div class="row justify-content-center align-items-center" style='height: 40%;' id='picture'>
+    <div class='col-12 text-center'>
+       <img src="{{ url_for('display_image', filename=filename) }}"
+            class='img-fluid border border-white'
+            style='border-width: 2px !important; border-radius: 10%; max-height: 18vh !important;'>
+     </div>
+   </div>
+  {% endif %}
 
   <!-- buttons -->
-
-  <div class="row justify-content-center align-self-center py-5">
+  <div class="row justify-content-center align-items-center" style='height: 20%;' id='buttons'>
+    {% if not filename %}
     <div class='col-4 col-md-1 text-center' id='prev-div' style='display: none;'>
+    {% else %}
+    <div class='col-4 col-md-1 text-center' id='prev-div'>
+    {% endif %}
       <a href='#' id='prev' class='btn-custom'>
-        <i class="far fa-play-circle fa-flip-horizontal fa-lg" id='prev-icon'></i>
+        <i class="far fa-play-circle fa-flip-horizontal fa-lg" id='prev-icon'
+           style='font-size: 2em;'></i>
       </a>
     </div>
-    <div class='col-4 col-md-1 text-center'>
+    <div class='col-4 col-md-1 text-center' id='next-div'>
       <a href='#' id='next' class='btn-custom'>
-        <i class="far fa-play-circle fa-lg" id='next-icon'></i>
+        <i class="far fa-play-circle fa-lg" id='next-icon'
+           style='font-size: 2em;'></i>
       </a>
+    </div>
+  </div>
+
+  <!-- about -->
+  <div class='row mt-2 justify-content-center align-items-center' id='about-text' style='display: none;'>
+    <div class='col-11' style='height: 35vh; overflow-y: auto;'>
+      <p class='text-white' align='justify'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce neque justo, blandit quis rhoncus sit amet, sagittis at leo. Sed suscipit enim id urna ultricies, ut rhoncus diam molestie. Suspendisse ullamcorper, orci convallis placerat euismod, leo dui dignissim dui, nec lacinia arcu justo eu felis. Maecenas diam mi, dignissim vel venenatis et, bibendum in ante. Quisque venenatis tempor tortor, at varius enim pellentesque et. Cras luctus ut eros eget rutrum. Pellentesque commodo neque at sapien tempor, et volutpat orci bibendum.
+      </p>
+      <p class='text-white' align='justify'>
+        Aenean in risus tellus. Aliquam neque ante, porttitor nec malesuada in, pulvinar ut sapien. Nulla a augue sodales, ultrices nisi nec, commodo sem. Curabitur euismod felis eget metus sodales porta. Praesent facilisis nunc scelerisque velit mattis, id vestibulum nibh dictum. Nullam rhoncus eleifend ex, sed elementum mi volutpat a. Ut vulputate fermentum leo, vel elementum sem congue ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam quis massa vitae odio viverra sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      </p>
     </div>
   </div>
 </div>
@@ -70,7 +92,7 @@
 {% block script %}
 <script>
 $(document).ready(function(){
-  $('#next-icon, #prev-icon').hover(
+  $('#next-icon, #prev-icon, #about-icon').hover(
     function () {
       $(this).removeClass('far').addClass('fas').css({'color': 'white'});
     },
@@ -78,19 +100,19 @@ $(document).ready(function(){
       $(this).removeClass('fas').addClass('far');
     }
   );
-  $('#next-icon, #prev-icon').on(
+  $('#next-icon, #prev-icon, #about-icon').on(
     'mousedown', function() {
       $(this).css({'color': 'lightgray'});
     }
   );
-  $('#next-icon, #prev-icon').on(
+  $('#next-icon, #prev-icon, #about-icon').on(
     'mouseup', function() {
       $(this).css({'color': 'white'});
     }
   );
   $('#next').click(function() {
     if ($('#home').is(':visible')) {
-      $('#home').fadeOut('fast', function() {
+      $('#home, #next-div').fadeOut('fast', function() {
         $('#input').fadeIn();
         $('#prev-div').fadeIn();
       });
@@ -98,11 +120,32 @@ $(document).ready(function(){
   });
   $('#prev').click(function() {
     if ($('#input').is(':visible')) {
-      $('#prev-div').fadeOut('fast');
-      $('#input').fadeOut('fast', function() {
+      $('#input, #prev-div').fadeOut('fast', function() {
         $('#home').fadeIn();
+        $('#next-div').fadeIn();
       });
-    }
+    } else if ($('#picture').is(':visible')) {
+      $('#picture, #next-div').fadeOut('fast', function() {
+        $('#input').fadeIn();
+      });
+      $('#prev-icon').removeClass('fas').addClass('far');
+    };
+  });
+  $('#about').click(function() {
+    if ($('#about-icon').hasClass('fa-question-circle')) {
+      $('#home, #input, #picture, #buttons').fadeOut('fast', function() {
+        $('#about-text').fadeIn();
+      });
+      $('#about-icon').removeClass('fa-question-circle').addClass('fa-times-circle')
+                      .removeClass('fas').addClass('far');
+
+    } else {
+      $('#about-text').fadeOut('fast', function() {
+        $('#home, #buttons').fadeIn();
+      });
+      $('#about-icon').removeClass('fa-times-circle').addClass('fa-question-circle')
+                      .removeClass('fas').addClass('far');
+    };
   });
 });
 </script>
